@@ -13,10 +13,10 @@
     <key alias="manufacturer">Forhandler</key>
     <key alias="manufacturerModel">Forhandler model nr.</key>
     <key alias="variantInfo">Variant Information</key>
-    <key alias="variantOptions">Varianter</key>  <!-- TODO: Figure out context - is it right? -->
+    <key alias="variantOptions">Variant valgmuligheder</key>  <!-- TODO: Figure out context - is it right? -->
     <key alias="downloads">Digitale Downloads</key>
-    <key alias="optionName">Mulighed navn</key>  <!-- TODO: Figure out context - is it right? -->
-    <key alias="optionValues">Mulighed værdier</key>  <!-- TODO: Figure out context - is it right? -->
+    <key alias="optionName">Valgmulighed navn</key>  
+    <key alias="optionValues">Valgmulighed værdier</key> 
     <!-- actions -->
     <key alias="newProduct">Nyt Produkt</key>
     <key alias="createProduct">Opret et produkt</key>
@@ -26,12 +26,12 @@
     <key alias="newVariantOn">Dette bliver en ny variant på</key>
     <key alias="addVariant">Tilføj en variant</key>
     <key alias="addVariantSub">Dette bliver en ny variant på produktet %0%.</key>
-    <key alias="addOption">Tilføj mulighed</key> <!-- TODO: Figure out context - is it right? -->
-    <key alias="addOptions">Tilføj muligheder til varianten og auto-udfyld ekstra varianter for hver mulighed</key> <!-- TODO: Figure out context - is it right? -->
+    <key alias="addOption">Tilføj valgmulighed</key> 
+    <key alias="addOptions">Tilføj valgmuligheder til varianten og auto-udfyld ekstra varianter for hver mulighed</key> 
     <key alias="deleteProduct">Slet produkt</key>
     <key alias="deleteVariant">Slet variant</key>
     <key alias="configVariant">Konfigurér denne variant</key>
-    <key alias="selectVariantOptions">Vælg de varianter/muligheder der skal oprettes.</key> <!-- TODO: Figure out context - is it right? -->
+    <key alias="selectVariantOptions">Vælg de varianter/valgmuligheder der skal oprettes.</key> 
     <key alias="addFile">Tilføj en fil på din produkt variant</key>
     <key alias="trackInventory">Spor lagerstatus for denne variant</key>
     <key alias="setInventoryPreferences">Vælg hvordan udsolgte varer håndteres og justér varekatalog for denne variant.</key>
@@ -40,28 +40,37 @@
     <key alias="optionNameExamples">(f.eks. størrelse, type, farve)</key>
     <key alias="optionValueExamples">(f.eks. rød, grøn, blå)</key>
     <key alias="hasDigitalDownload">Denne vare er digital</key>
-    <key alias="hasOptions">Denne variant har muligheder som f.eks. "størrelse" eller "farve"</key> <!-- TODO: Figure out context - is it right? -->
+    <key alias="hasOptions">Denne variant har valgmuligheder som f.eks. "størrelse" eller "farve"</key> 
     <key alias="isTaxable">Denne variant kan beskattes</key>
     <key alias="isShippable">Denne variant kan leveres</key>
+    <key alias="isOnSale">Denne variant er på udsalg</key>
+    <key alias="isAvailable">Denne variant er til salg</key>
     <key alias="noProduct">Du har ingen produkter.</key>
     <key alias="newProductPrompt">Vil du oprette et produkt? Så klik på knappen "Nyt produkt".</key>
     <key alias="limitSelect">Antal produkter der skal vises</key>
     <key alias="mustUniqueSku">Skal have en unik SKU</key>
     <key alias="inventoryWarning"><![CDATA[<p>Vigtigt: Hvis du vælger at spore lagerbeholdningen skal det opsættes manuelt for hver enkelt variant (Herunder), når produktet er gemt. Du kan opsætte en basis lagerbeholdning som tilknyttes <strong>alle varianter</strong> her.</p>]]></key>
-    <key alias="startingInventoryWarning"><![CDATA[(Dette vil opsætte en start lagerbeholdning for <strong>alle varianter</strong> og <strong>alle lagre</strong>)]]></key> <!-- WHat is this?-->
+    <key alias="startingInventoryWarning"><![CDATA[(Dette vil opsætte en start lagerbeholdning for <strong>alle varianter</strong> og <strong>alle lagre</strong>)]]></key> 
   </area>
   <area alias="merchelloOrder">
     <!-- things -->
+    <key alias="invoice">Faktura</key>
+    <key alias="invoiceNumber">Faktura nummer</key>
     <key alias="order">Ordre</key>
     <key alias="orders">Ordrer</key>
     <key alias="orderNumber">Ordre nummer</key>
     <key alias="paymentStatus">Betalingsstatus</key>
-    <key alias="fulfillmentStatus">Fulfillment Status</key> <!-- TODO: Figure out context - is it right? -->
+    <key alias="fulfillmentStatus">Leveringsstatus</key>
+        <key alias="saveAnonymousCustomer">Gem som anonym kunde</key>
+        <key alias="createCustomer">Opret ny kunde</key>
+      <key alias="createNewOrder">Opret ny ordre</key>
     <key alias="lineItems"> Ordrelinier</key>
     <key alias="orderName">[Ordre navn]</key>
+    <key alias="sales">Salg</key>
+    <key alias="saleInformation">Salgsinformation</key>
     <!-- actions -->
     <key alias="filter">Filtrér ordre</key>
-    <key alias="capturePayment">Capture Payment</key> <!-- TODO: Figure out context - is it right? -->
+    <key alias="capturePayment">Hæv betaling</key>
     <key alias="processPayment">Gennemfør betaling</key>
 
     <!-- phrases -->
@@ -82,16 +91,17 @@
     <!-- phrases -->
     <key alias="billingAndShippingAddressHelper">Betaling -og leveringsadresser</key>
     <key alias="orderInformationHelper"><![CDATA[Ordrelinier og omkostninger]]></key>
-    <key alias="captureUpTo">Indløs op til</key>
+    <key alias="captureUpTo">Hæv op til</key>
     <key alias="salesTax">Moms</key>
     <key alias="authorized"> Autoriseret</key>
     <key alias="paymentHistory"> Betalingshistorik</key>
-    <key alias="paymentHistoryHelper">Status records for one or more payments</key> <!-- TODO: Figure out context - is it right? -->
+    <key alias="saleHistory">Salshistorik</key>
+    <key alias="paymentHistoryHelper">Status for en eller flere betalinger</key> <!-- TODO: Figure out context - is it right? -->
     <key alias="paymentProcessedBy">Betaling gennemført af:</key>
   </area>
   <area alias="merchelloFulfillShipment">
     <!-- phrases -->
-    <key alias="fulfillManually">Udfyld manuelt</key>
+    <key alias="fulfillManually">Levering manuelt</key>
   </area>
   <area alias="merchelloWarehouse">
     <!-- things -->
@@ -99,6 +109,7 @@
     <key alias="warehouses">Lagre</key>
     <key alias="stock">Beholdning</key>
     <key alias="lowCount">Lavt antal</key>
+    <key alias="location">Lokation</key>
     <!-- actions -->
     <!-- phrases -->
   </area>
@@ -142,8 +153,7 @@
     <key alias="shipment">Forsendelse</key>
     <key alias="sku">SKU</key>
     <key alias="quantity">Antal</key>
-    <key alias="fulfill"> Udfyld</key>
-    <key alias="shipment"> Forsendelse</key>
+    <key alias="fulfill"> Levering</key>
     <key alias="status"> Status</key>
     <key alias="type"> Type</key>
     <key alias="amount"> Beløb</key>
@@ -165,7 +175,7 @@
     <key alias="catalogDefaultsHelper">Opsæt standard katelog enheders (produkt) muligheder. Kan ændres pr. enhed senere.</key>
     <key alias="globalTaxable">Alle enheder er momspligtige</key>
     <key alias="globalShippable">Alle enheder kan afsendes</key>
-    <key alias="globalTrackInventory"><![CDATA[Track inventory for all items & variants]]></key>
+    <key alias="globalTrackInventory"><![CDATA[Lagerstyring for alle produkter og varianter]]></key>
     <key alias="globalShippingIsTaxable">Der skal betales moms af forsendelsesomkostningerne</key>
   </area>
   <area alias="merchelloShipping">
@@ -174,7 +184,7 @@
     <key alias="editWarehouseHelper">Redigér dit lager</key>
     <key alias="editWarehouse">Redigér lager</key>
     <key alias="shippingMethods">Forsendelses muligheder</key>
-    <key alias="shippingMethodsHelper">Tilføj forsendelses muligheder til eksisterende regioner eller opret en ny region</key>
+    <key alias="shippingMethodsHelper">Tilføj forsendelsesmuligheder til eksisterende regioner eller opret en ny region</key>
     <key alias="addCountry">Tilføj et land</key>
   </area>
   <area alias="merchelloShippingCountry">
@@ -215,7 +225,7 @@
   </area>
   <area alias="merchelloShippingHistory">
     <key alias="shipmentHistory">Forsendelses historik</key>
-    <key alias="shipmentHistoryHelper">Status records for one or more shipments</key> <!--TODO: Figure out context -->
+    <key alias="shipmentHistoryHelper">Status for en eller flere forsendelser</key> <!--TODO: Figure out context -->
     <key alias="shipment">Forsendelse</key>
     <key alias="trackingNumber">Sporingsnummer</key>
   </area>
@@ -301,41 +311,42 @@
   </area>
   <area alias="merchelloProductEdit">
     <key alias="enterProductName">Skriv et produkt navn</key>
-    <key alias="dragAndReorder">Træk for at sortere muligheder og varianter</key>
+    <key alias="dragAndReorder">Træk for at sortere valgmuligheder og varianter</key>
     <key alias="reorderVariants">Sorter varianter</key>
-    <key alias="dragAndReorderHelper">Hvis du sorterer dine muligheder og varianter vil det ændre den rækkefølge de fremstår i på din webshop. Træk dine muligheder (f.eks. størrelse eller type) vertikalt og varianter (f.eks. kvinder eller lille) horizontalt.</key>
+    <key alias="dragAndReorderHelper">Hvis du sorterer dine valgmuligheder og varianter vil det ændre den rækkefølge de fremstår i på din webshop. Træk dine muligheder (f.eks. størrelse eller type) vertikalt og varianter (f.eks. kvinder eller lille) horizontalt.</key>
     <key alias="changePrices">Ret priser</key>
     <key alias="updateInventory">Opdater lagerbehandling</key>
     <key alias="duplicateVariant"> Duplikér variant</key>
     <key alias="inAnother">I en anden</key>
-    <key alias="editOptions">Redigér muligheder</key>
-    <key alias="editOptionsHelper">Redigér/Tilføj muligheder, som automatisk opdaterer dine varianter</key>
-    <key alias="optionName">Mulighed navn</key>
+    <key alias="editOptions">Redigér valgmuligheder</key>
+    <key alias="editOptionsHelper">Redigér/Tilføj valgmuligheder, som automatisk opdaterer dine varianter</key>
+    <key alias="optionName">Valgmulighed navn</key>
     <key alias="optionNameHelper">(f.eks. størrelse, type, farve)</key>
-    <key alias="optionValue">Mulighed værdier</key>
+    <key alias="optionValue">Valgmulighed værdier</key>
     <key alias="optionValueHelper">(f.eks. rød, grøn, blå)</key>
     <key alias="addStyle">Tilføj type...</key>
-    <key alias="addAnotherOption">Tilføj ny mulighed</key>
+    <key alias="addAnotherOption">Tilføj ny valgmulighed</key>
     <key alias="variantInformation">Variant information</key>
     <key alias="variantInformationHelper">Redigér varianter på dette produkt.</key>
     <key alias="selectProduct">Vælg produkt...</key>
     <key alias="selectMerchelloProduct">Vælg Merchello Produkt</key>
     <key alias="selectYourProduct">Vælg dit produkt</key>
+    <key alias="removeProduct">Fjern dette produkt</key>
+    <key alias="itemLocation">Vare Lokation</key>
   </area>
 
   <area alias="merchelloAuditLogs">
-    <key alias="notificationShipping">Shipping confirmation email sent to %0%</key>
-    <key alias="notificationSalesConfirmation">Sales confirmation email sent to %0%</key>
-    <key alias="paymentCaptured">We successfully captured %0% %1%</key>
-    <key alias="paymentAuthorize">We were authorized to capture %0% %1%</key>
-    <key alias="paymentVoided">Payment was voided</key>
-    <key alias="paymentDeclined">Payment was declined</key>
-    <key alias="paymentRefunded">We refunded %0% %1% of a payment</key>
-    <key alias="invoiceDeleted">Invoice %0% was deleted</key>
-    <key alias="paymentDeleted">Payment was deleted</key>
-    <key alias="invoiceCreated">Sale was made. Invoice %0%</key>
-    <key alias="orderCreated">Order %0% was created</key>
-    <key alias="shipmentCreated">We successfully fulfilled %0% line items</key>
+    <key alias="notificationShipping">Forsendelsesbekræftelsesmail sendt til %0%</key>
+    <key alias="notificationSalesConfirmation">Salgsbekræftelsesmail sendt til %0%</key>
+    <key alias="paymentCaptured">Vi har hævet %0% %1% med succes</key>
+    <key alias="paymentAuthorize">Vi er authoriserede til at hæve %0% %1%</key>
+    <key alias="paymentVoided">Betalingen blev annuleret</key>
+    <key alias="paymentDeclined">Betalingen blev afvist</key>
+    <key alias="paymentRefunded">Vi har refunderet %0% %1% af en betaling</key>
+    <key alias="invoiceDeleted">Faktura %0% blev slettet</key>
+    <key alias="paymentDeleted">Betalingen blev slettet</key>
+    <key alias="invoiceCreated">Salget blev gennemført. Faktura %0%</key>
+    <key alias="orderCreated">Ordren %0% blev oprettet</key>
+    <key alias="shipmentCreated">Vi har med succes leveret %0% ordrelinier</key>
   </area>
-  
 </language>
