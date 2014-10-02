@@ -1,11 +1,12 @@
-﻿namespace Merchello.Tests.Braintree.Integration.Api
+﻿using Merchello.Plugin.Payments.Braintree.Services;
+
+namespace Merchello.Tests.Braintree.Integration.Api
 {
     using System;
 
     using global::Braintree;
 
     using Merchello.Plugin.Payments.Braintree;
-    using Merchello.Plugin.Payments.Braintree.Services;
     using Merchello.Tests.Braintree.Integration.TestHelpers;
 
     using NUnit.Framework;
@@ -14,13 +15,11 @@
     public class BraintreeApiTests : BraintreeTestBase
     {
 
-
         [SetUp]
         public void Setup()
         {
             try
             {
-
                 var customer = Gateway.Customer.Find(CustomerKey.ToString());
 
                 Gateway.Customer.Delete(CustomerKey.ToString());
@@ -53,7 +52,6 @@
 
             //// Assert
             Assert.IsTrue(result.IsSuccess());
-
         }
 
         [Test]
@@ -64,7 +62,7 @@
 
             var customerRequest = new CustomerRequest()
                                       {
-                                          Id = CustomerKey.ToString(),
+                                          CustomerId = CustomerKey.ToString(),
                                           FirstName = "Rusty",
                                           LastName = "Swayne",
                                           Company = "Mindfly",
@@ -83,7 +81,7 @@
         public void Can_Generate_A_ClientTokenRequest_And_GetToken()
         {
             //// Arrange
-            var factory = new CustomerRequestFactory();
+            var factory = new BraintreeApiRequestFactory(BraintreeProviderSettings);
 
             var request = factory.CreateClientTokenRequest(Guid.Empty);
 
@@ -99,9 +97,9 @@
         public void Can_Generate_A_ClientTokenRequest_For_A_Customer_And_GetToken()
         {
             //// Arrange
-            var factory = new CustomerRequestFactory();
+            var factory = new BraintreeApiRequestFactory(BraintreeProviderSettings);
 
-            var request = factory.CreateClientTokenRequest(Guid.Empty);
+            var request = factory.CreateClientTokenRequest(TestCustomer.Key);
 
             //// Act
             var token = Gateway.ClientToken.generate(request);
@@ -110,6 +108,5 @@
             Assert.IsNotNullOrEmpty(token);
             Console.Write(token);
         }
-
     }
 }

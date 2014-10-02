@@ -1,15 +1,14 @@
-﻿namespace Merchello.Plugin.Payments.Braintree.Controllers
+﻿using Merchello.Plugin.Payments.Braintree.Services;
+
+namespace Merchello.Plugin.Payments.Braintree.Controllers
 {
     using System;
     using System.Web.Http;
-
-    using global::Braintree;
 
     using Merchello.Core;
     using Merchello.Core.Models;
     using Merchello.Core.Services;
     using Merchello.Plugin.Payments.Braintree.Provider;
-    using Merchello.Plugin.Payments.Braintree.Services;
 
     using Umbraco.Core.Logging;
     using Umbraco.Web.Mvc;
@@ -22,15 +21,13 @@
     public class BraintreeApiController : UmbracoApiController
     {
         /// <summary>
-        /// The <see cref="BraintreeGateway"/>.
+        /// The <see cref="IBraintreeApiService"/>.
         /// </summary>
-        private readonly BraintreeGateway _gateway;
+        private readonly IBraintreeApiService _braintreeApiService;
 
         /// <summary>
-        /// The <see cref="CustomerRequestFactory"/>.
+        /// The customer service.
         /// </summary>
-        private readonly CustomerRequestFactory _requestFactory;
-
         private readonly ICustomerService _customerService;
 
         /// <summary>
@@ -62,9 +59,9 @@
 
             _customerService = merchelloContext.Services.CustomerService;
 
-            _gateway = provider.ExtendedData.GetBrainTreeProviderSettings().AsBraintreeGateway();
+            var settings = provider.ExtendedData.GetBrainTreeProviderSettings();
 
-            _requestFactory = new CustomerRequestFactory();
+            this._braintreeApiService = new BraintreeApiService(merchelloContext, settings);
         }
 
         /// <summary>
@@ -77,19 +74,15 @@
         /// The <see cref="string"/>.
         /// </returns>
         [HttpGet]
-        public string GetClientToken(Guid customerKey)
+        public string GetClientRequestToken(Guid customerKey)
         {
-            if (customerKey != Guid.Empty)
-            {
-                var customer = _customerService.GetAnyByKey(customerKey);
+            Mandate.ParameterCondition(customerKey != Guid.Empty, "customerKey");
+           
+            var customer = _customerService.GetAnyByKey(customerKey);
 
-                // we want an anonymous token for anonymous customers
-                if (customer.IsAnonymous) customerKey = Guid.Empty;
-            }
-
-            var request = _requestFactory.CreateClientTokenRequest(customerKey);
-
-            return _gateway.ClientToken.generate(request);
+            return customer.IsAnonymous
+                       ? _braintreeApiService.Customer.GenerateClientRequestToken()
+                       : _braintreeApiService.Customer.GenerateClientRequestToken((ICustomer)customer);
         }
     }
 }
