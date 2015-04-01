@@ -7,6 +7,7 @@ namespace Merchello.Core.Models
     using System.IO;
     using System.Linq;
     using Merchello.Core.Gateways.Shipping;
+    using Merchello.Core.Models.MonitorModels;
     using Merchello.Core.Services;
     using Umbraco.Core;
     using Umbraco.Core.Logging;
@@ -176,17 +177,37 @@ namespace Merchello.Core.Models
         }
 
         /// <summary>
-        /// Gets a collection of <see cref="IReplaceablePattern"/> for the invoice
+        /// Gets a collection of <see cref="IReplaceablePattern"/> for the shipment result notify model
         /// </summary>
-        /// <param name="invoice">
-        /// The invoice.
+        /// <param name="notifyModel">
+        /// The <see cref="IShipmentResultNotifyModel"/>.
         /// </param>
         /// <returns>
-        /// The collection of replaceable patterns
+        /// The <see cref="IEnumerable{ReplaceablePatterns}"/>.
+        /// </returns>
+        internal static IEnumerable<IReplaceablePattern> ReplaceablePatterns(this IShipmentResultNotifyModel notifyModel)
+        {
+            // TODO localization needed on pricing and datetime
+            var shipment = notifyModel.Shipment;
+            var patterns = new List<IReplaceablePattern>();
+            patterns.AddRange(shipment.ReplaceablePatterns());
+                                  
+            patterns.AddRange(notifyModel.Invoice.ReplaceablePatterns());
+
+            return patterns;
+        }
+
+        /// <summary>
+        /// Adds shipment replaceable patters.
+        /// </summary>
+        /// <param name="shipment">
+        /// The shipment.
+        /// </param>
+        /// <returns>
+        /// The <see cref="IEnumerable{IReplaceablePattern}"/>.
         /// </returns>
         internal static IEnumerable<IReplaceablePattern> ReplaceablePatterns(this IShipment shipment)
         {
-            // TODO localization needed on pricing and datetime
             var patterns = new List<IReplaceablePattern>
             {
                 ReplaceablePattern.GetConfigurationReplaceablePattern("ShippedDate", shipment.ShippedDate.ToShortDateString()),
@@ -203,11 +224,11 @@ namespace Merchello.Core.Models
                 ReplaceablePattern.GetConfigurationReplaceablePattern("ShipToOrganization", shipment.ToOrganization),
                 ReplaceablePattern.GetConfigurationReplaceablePattern("TrackingCode", shipment.TrackingCode)
             };
-                                  
+
             patterns.AddRange(shipment.LineItemReplaceablePatterns());
 
             return patterns;
-        }
+        } 
 
         /// <summary>
         /// Clones a shipment
