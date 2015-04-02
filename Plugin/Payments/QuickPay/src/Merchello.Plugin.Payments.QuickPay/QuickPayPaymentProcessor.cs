@@ -559,7 +559,7 @@ namespace Merchello.Plugin.Payments.QuickPay
         /// </summary>
         public static string ApiVersion
         {
-            get { return "1.0.3"; }
+            get { return "0.9.0"; }
         }
     }
 
